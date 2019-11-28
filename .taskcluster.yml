@@ -101,6 +101,11 @@ tasks:
                           $if: 'tasks_for in ["github-push", "github-release", "action", "cron"] && repoUrl == "https://github.com/mozilla-mobile/fenix"'
                           then: '3'
                           else: '1'
+
+                      short_head_branch:
+                          $if: 'head_branch[:11] == "refs/heads/"'
+                          then: {$eval: 'head_branch[11:]'}
+                          else: ${head_branch}
                   in:
                       taskId: '${ownTaskId}'
                       taskGroupId:
@@ -146,21 +151,16 @@ tasks:
                       routes:
                           $flatten:
                               - checks
+                              - index.garbage.project.mobile.${project}.v2.${short_head_branch}.revision.${head_sha}.taskgraph.decision
                               - $if: 'level == "3"'
                                 then:
                                     - "tc-treeherder.v2.${project}.${head_sha}"
                                 else: []
                       scopes:
-                          # `https://` is 8 characters so, ${repoUrl[8:]} is the repository without the protocol.
                           $if: 'tasks_for == "github-push"'
                           then:
-                              $let:
-                                  short_head_branch:
-                                      $if: 'head_branch[:11] == "refs/heads/"'
-                                      then: {$eval: 'head_branch[11:]'}
-                                      else: ${head_branch}
-                              in:
-                                  - 'assume:repo:${repoUrl[8:]}:branch:${short_head_branch}'
+                              # `https://` is 8 characters so, ${repoUrl[8:]} is the repository without the protocol.
+                              - 'assume:repo:${repoUrl[8:]}:branch:${short_head_branch}'
                           else:
                               $if: 'tasks_for == "github-pull-request"'
                               then:
