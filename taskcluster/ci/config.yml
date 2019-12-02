@@ -62,3 +62,9 @@ workers:
 
 scriptworker:
     scope-prefix: project:mobile:fenix:releng
+
+
+release-promotion:
+    flavors:
+        promote:
+            target-tasks-method: promote_fenix

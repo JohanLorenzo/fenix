@@ -22,13 +22,14 @@ extend_parameters_schema({
     Required('pull_request_number'): Any(All(int, Range(min=1)), None),
     Required('release_type'): text_type,
     Required('release_version'): text_type,
+    Optional('shipping_phase'): Any('build', 'promote', None),
 })
 
 
 def get_decision_parameters(graph_config, parameters):
     head_tag = os.environ.get("MOBILE_HEAD_TAG", "").decode('utf-8')
     parameters["head_tag"] = head_tag
-    parameters["release_type"] = _resolve_release_type(head_tag)
+    parameters["release_type"] = resolve_release_type(head_tag)
     parameters["release_version"] = head_tag[1:] if head_tag else ""
 
     pr_number = os.environ.get("MOBILE_PULL_REQUEST_NUMBER", None)
@@ -45,7 +46,7 @@ def get_decision_parameters(graph_config, parameters):
         parameters["target_tasks_method"] = "release"
 
 
-def _resolve_release_type(head_tag):
+def resolve_release_type(head_tag):
     if not head_tag:
         return ""
     elif BETA_SEMVER.match(head_tag):
