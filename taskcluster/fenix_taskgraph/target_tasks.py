@@ -41,3 +41,13 @@ def target_tasks_raptor(full_task_graph, parameters, graph_config):
         return task.kind == 'raptor'
 
     return [l for l, t in full_task_graph.tasks.iteritems() if filter(t, parameters)]
+
+
+@_target_task("promote_fenix")
+def target_tasks_promote_xpi(full_task_graph, parameters, graph_config):
+    """Select the set of tasks required for promoting Fenix."""
+
+    def filter(task, parameters):
+        return task.attributes.get('shipping-phase') in ('build', 'promote')
+
+    return [l for l, t in full_task_graph.tasks.iteritems() if filter(t, parameters)]
