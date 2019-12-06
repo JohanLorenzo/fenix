@@ -50,12 +50,13 @@ tasks:
                           then: '${repository.url}'
               project:
                   $if: 'tasks_for in ["github-push", "github-release"]'
-                  then: '${event.repository.name}'
+                  then: '${event.repository.owner.login}/${event.repository.name}'
                   else:
                       $if: 'tasks_for == "github-pull-request"'
-                      then: '${event.pull_request.head.repo.name}'
+                      then: '${event.pull_request.head.repo.owner.login}/${event.pull_request.head.repo.name}'
                       else:
                           $if: 'tasks_for in ["cron", "action"]'
+                          # TODO before landing: determine what the value is
                           then: '${repository.project}'
               head_branch:
                   $if: 'tasks_for == "github-pull-request"'
