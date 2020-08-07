@@ -28,7 +28,9 @@ job-template:
         github-project:
             by-level:
                 '3': fenix
-                default: mock
+                default: fenix
+                # TODO: Uncomment the following line before merging
+                # default: mock
         is-prerelease:
             by-build-type:
                 beta: true
