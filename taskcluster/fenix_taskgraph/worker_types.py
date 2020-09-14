@@ -145,7 +145,7 @@ def build_github_release_payload(config, task, task_def):
 
     task_def["payload"] = {
         "artifactMap": worker["artifact-map"],
-        "gitTab": worker["git-tag"],
+        "gitTag": worker["git-tag"],
         "gitRevision": worker["git-revision"],
         "isPrerelease": worker["is-prerelease"],
         "releaseName": worker["release-name"],
