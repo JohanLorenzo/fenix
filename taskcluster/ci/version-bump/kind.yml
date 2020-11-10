@@ -30,10 +30,7 @@ job-template:
                 beta: ["version.txt"]
                 release: ["version.txt"]
                 default: ["version.txt"]
-        push:
-            by-level:
-                '3': true
-                default: false
+        push: true
 
 
     treeherder:
