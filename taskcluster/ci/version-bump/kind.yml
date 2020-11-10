@@ -24,7 +24,6 @@ job-template:
     description: Fenix version bump/tag
     worker-type: tree
     worker:
-        # TODO: configure with proper payload expected input
         bump: true
         bump-files:
             by-build-type:

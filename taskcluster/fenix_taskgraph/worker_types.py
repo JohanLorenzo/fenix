@@ -172,7 +172,6 @@ def build_github_release_payload(config, task, task_def):
         Required("bump"): bool,
         Optional("bump-files"): [text_type],
         Optional("push"): bool,
-        # TODO: configure with proper payload expected input
     },
 )
 def build_version_bump_payload(config, task, task_def):
