@@ -21,6 +21,7 @@ extend_parameters_schema({
     Required("release_type"): text_type,
     Optional("shipping_phase"): Any('build', 'ship', None),
     Required("version"): text_type,
+    Required("next_version"): Any(None, text_type),
 })
 
 
@@ -41,6 +42,8 @@ def get_decision_parameters(graph_config, parameters):
                     )
                 )
         parameters["target_tasks_method"] = "release"
+
+    parameters.setdefault("next_version", None)
 
 
 def resolve_release_type(head_tag):

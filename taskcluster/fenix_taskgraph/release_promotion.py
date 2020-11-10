@@ -89,8 +89,15 @@ def is_release_promotion_available(parameters):
                                 'relying on the in-tree version will break things.'),
                 'default': '',
             },
+            "next_version": {
+                "type": "string",
+                "description": (
+                    "Next version.",
+                ),
+                "default": "",
+            },
         },
-        "required": ['release_promotion_flavor', 'version', 'build_number'],
+        "required": ["release_promotion_flavor", "version", "build_number", "next_version"],
     }
 )
 def release_promotion_action(parameters, graph_config, input, task_group_id, task_id):
@@ -134,6 +141,7 @@ def release_promotion_action(parameters, graph_config, input, task_group_id, tas
     parameters['shipping_phase'] = input['release_promotion_flavor']
 
     parameters['version'] = input['version'] if input.get('version') else read_version_file()
+    parameters['next_version'] = input['next_version']
     parameters['head_tag'] = 'v{}'.format(parameters['version'])
     parameters['release_type'] = resolve_release_type(parameters['head_tag'])
 
