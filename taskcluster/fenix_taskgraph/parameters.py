@@ -52,7 +52,7 @@ def get_decision_parameters(graph_config, parameters):
             next_version = version.bump("patch_number")
         else:
             raise ValueError("Unsupported version type: {}".format(version.version_type))
-        parameters["next_version"] = str(next_version)
+        parameters["next_version"] = str(next_version).decode("utf-8")
 
 
 def resolve_release_type(head_tag):
