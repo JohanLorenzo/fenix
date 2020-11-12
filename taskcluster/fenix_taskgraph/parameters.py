@@ -7,6 +7,7 @@ from __future__ import absolute_import, print_function, unicode_literals
 import os
 import re
 
+from mozilla_version.fenix import FenixVersion
 from six import text_type
 from taskgraph.parameters import extend_parameters_schema
 from voluptuous import All, Any, Optional, Range, Required
@@ -32,6 +33,7 @@ def get_decision_parameters(graph_config, parameters):
 
     pr_number = os.environ.get("MOBILE_PULL_REQUEST_NUMBER", None)
     parameters["pull_request_number"] = None if pr_number is None else int(pr_number)
+    parameters.setdefault("next_version", None)
 
     if parameters["tasks_for"] == "github-release":
         for param_name in ("release_type", "version"):
@@ -43,7 +45,14 @@ def get_decision_parameters(graph_config, parameters):
                 )
         parameters["target_tasks_method"] = "release"
 
-    parameters.setdefault("next_version", None)
+        version = FenixVersion.parse(parameters["version"])
+        if version.is_beta:
+            next_version = version.bump("beta_number")
+        elif version.is_release:
+            next_version = version.bump("patch_number")
+        else:
+            raise ValueError("Unsupported version type: {}".format(version.version_type))
+        parameters["next_version"] = str(next_version)
 
 
 def resolve_release_type(head_tag):
