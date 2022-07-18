@@ -78,12 +78,12 @@ def build_browsertime_task(config, tasks):
         for key in ("args", "treeherder.platform", "worker-type"):
             resolve_keyed_by(task, key, item_name=task["name"], **{"abi": abi})
 
-        task["treeherder"] = inherit_treeherder_from_dep(task, signing)
+        # task["treeherder"] = inherit_treeherder_from_dep(task, signing)
 
         test_name = task.pop("test-name")
-        platform = task["treeherder"]["platform"]
+        # platform = task["treeherder"]["platform"]
 
-        task_name = "{}-{}-{}-{}".format(platform, test_name, build_type, abi)
+        task_name = "{}-{}-{}-{}".format("platform", test_name, build_type, abi)
         task["name"] = task_name
         task["description"] = task_name
 
@@ -138,7 +138,7 @@ def build_browsertime_task(config, tasks):
             task["run"]["command"].append("--browsertime-no-ffwindowrecorder")
 
         # Build taskcluster group and symol
-        task["treeherder"]["symbol"] = "Btime(%s)" % symbol
+        # task["treeherder"]["symbol"] = "Btime(%s)" % symbol
         task["name"] = (
             task["name"].replace("tp6m-", "tp6m-{}-".format(symbol)).replace("-hv", "")
         )

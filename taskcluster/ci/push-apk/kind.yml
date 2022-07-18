@@ -43,9 +43,9 @@ job-template:
                 default: true
         product: fenix
 
-    treeherder:
-        job-symbol: gp
-        kind: build
+    # treeherder:
+    #     job-symbol: gp
+    #     kind: build
     routes:
         by-level:
             '3':

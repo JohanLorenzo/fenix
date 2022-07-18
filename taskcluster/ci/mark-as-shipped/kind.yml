@@ -33,6 +33,6 @@ job-template:
                 - project:releng:ship-it:server:staging
     worker: {}
 
-    treeherder:
-        job-symbol: mark-shipped
-        kind: build
+    # treeherder:
+    #     job-symbol: mark-shipped
+    #     kind: build

@@ -34,6 +34,6 @@ job-template:
                 # fork.
                 default: false
 
-    treeherder:
-        job-symbol: vb
-        kind: build
+    # treeherder:
+    #     job-symbol: vb
+    #     kind: build

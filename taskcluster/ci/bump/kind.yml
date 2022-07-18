@@ -12,11 +12,11 @@ transforms:
     - taskgraph.transforms.task:transforms
 
 job-defaults:
-    treeherder:
-        kind: build
-        symbol: bump(a-c)
-        tier: 2
-        platform: android-all/opt
+    # treeherder:
+    #     kind: build
+    #     symbol: bump(a-c)
+    #     tier: 2
+    #     platform: android-all/opt
     run-on-tasks-for: []
     run:
         dummy-secrets:

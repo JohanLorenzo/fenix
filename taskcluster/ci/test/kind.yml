@@ -19,7 +19,7 @@ job-defaults:
     description: Test Fenix
     extra:
         notify:
-            slackBlocks: | 
+            slackBlocks: |
                 [
                   {
                     "type": "header",
@@ -37,7 +37,7 @@ job-defaults:
                          "type": "mrkdwn",
                          "text": "*Task*: <https://firefox-ci-tc.services.mozilla.com/tasks/${status.taskId}|Taskcluster>"
                     }
-                  },                  
+                  },
                   {
                     "type": "section",
                     "text": {
@@ -85,9 +85,9 @@ job-defaults:
     scopes:
         - queue:route:notify.slack-channel.G016BC5FUHJ.on-failed
         - notify:slack-channel:G016BC5FUHJ
-    treeherder:
-        kind: test
-        tier: 2
+    # treeherder:
+    #     kind: test
+    #     tier: 2
     worker-type: b-android
     worker:
         docker-image: {in-tree: base}
@@ -105,10 +105,10 @@ jobs:
                 - 'clean'
                 - 'testDebugUnitTest'
                 - 'githubTestDetails'
-        treeherder:
-            platform: 'android-all/opt'
-            symbol: debug(T)
-            tier: 1
+        # treeherder:
+        #     platform: 'android-all/opt'
+        #     symbol: debug(T)
+        #     tier: 1
         worker:
             artifacts:
                 - name: public/reports/index.html

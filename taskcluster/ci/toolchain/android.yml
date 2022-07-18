@@ -5,10 +5,10 @@
 job-defaults:
     run:
         using: toolchain-script
-    treeherder:
-        kind: build
-        platform: toolchains/opt
-        tier: 1
+    # treeherder:
+    #     kind: build
+    #     platform: toolchains/opt
+    #     tier: 1
 
 
 linux64-android-sdk-linux-repack:
@@ -23,8 +23,8 @@ linux64-android-sdk-linux-repack:
         resources: []
         toolchain-artifact: mobile/android-sdk/android-sdk-linux.tar.xz
         toolchain-alias: android-sdk-linux
-    treeherder:
-        symbol: TL(android-sdk-linux)
+    # treeherder:
+    #     symbol: TL(android-sdk-linux)
     worker:
         docker-image: {in-tree: base}
         max-run-time: 1800
@@ -48,8 +48,8 @@ linux64-android-gradle-dependencies:
             - buildSrc/src/main/java/AndroidComponents.kt
         toolchain-artifact: public/build/android-gradle-dependencies.tar.xz
         toolchain-alias: android-gradle-dependencies
-    treeherder:
-        symbol: TL(gradle-dependencies)
+    # treeherder:
+    #     symbol: TL(gradle-dependencies)
     worker:
         docker-image: {in-tree: android-build}
         env:

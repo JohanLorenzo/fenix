@@ -44,7 +44,7 @@ job-defaults:
                          "type": "mrkdwn",
                          "text": "*Task*: <https://firefox-ci-tc.services.mozilla.com/tasks/${status.taskId}|Taskcluster>"
                     }
-                  },                  
+                  },
                   {
                     "type": "section",
                     "text": {
@@ -83,10 +83,10 @@ job-defaults:
               json: true
         using: run-commands
         use-caches: false
-    treeherder:
-        kind: test
-        platform: 'ui-test/opt'
-        tier: 2
+    # treeherder:
+    #     kind: test
+    #     platform: 'ui-test/opt'
+    #     tier: 2
     worker:
         docker-image: {in-tree: ui-tests}
         max-run-time: 7200
@@ -108,8 +108,8 @@ jobs:
         run:
             commands:
                 - [automation/taskcluster/androidTest/ui-test.sh, x86, app.apk, android-test.apk, '-1']
-        treeherder:
-            symbol: debug(ui-test-x86)
+        # treeherder:
+        #     symbol: debug(ui-test-x86)
     screenshots-x86:
         attributes:
             screenshots: true
@@ -119,8 +119,8 @@ jobs:
         run:
             commands:
                 - [automation/taskcluster/androidTest/ui-test.sh, x86-screenshots-tests, app.apk, android-test.apk, '-1']
-        treeherder:
-            symbol: debug(screenshots-x86)
+        # treeherder:
+        #     symbol: debug(screenshots-x86)
     x86-beta:
         attributes:
             build-type: beta-firebase
@@ -133,8 +133,8 @@ jobs:
         run:
             commands:
                 - [automation/taskcluster/androidTest/ui-test.sh, x86-beta-tests, app.apk, android-test.apk, '50']
-        treeherder:
-            symbol: beta(ui-test-x86-beta)
+        # treeherder:
+        #     symbol: beta(ui-test-x86-beta)
     x86-nightly:
         attributes:
             build-type: nightly-firebase
@@ -146,5 +146,5 @@ jobs:
         run:
             commands:
                 - [automation/taskcluster/androidTest/ui-test.sh, x86-start-test, app.apk, android-test.apk, '-1']
-        treeherder:
-            symbol: nightly(ui-test-x86-nightly)
+        # treeherder:
+        #     symbol: nightly(ui-test-x86-nightly)
