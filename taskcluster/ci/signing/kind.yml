@@ -40,19 +40,19 @@ job-template:
             # We want beta on push so that we detect problem before shipping it
             (nightly-simulation|beta-firebase|android-test-beta|android-test-mozillaonline|nightly-firebase|android-test-nightly): [github-push]
             default: []
-    treeherder:
-        job-symbol:
-            by-build-type:
-                android-test.+: Bats
-                android-test-mozillaonline: Bats-mo
-                beta-firebase: Bfs
-                nightly-firebase: Bfs
-                beta-mozillaonline: Bmos
-                release-mozillaonline: Bmos
-                default: Bs
-        kind: build
-        platform: android-all/opt
-        tier: 1
+    # treeherder:
+    #     job-symbol:
+    #         by-build-type:
+    #             android-test.+: Bats
+    #             android-test-mozillaonline: Bats-mo
+    #             beta-firebase: Bfs
+    #             nightly-firebase: Bfs
+    #             beta-mozillaonline: Bmos
+    #             release-mozillaonline: Bmos
+    #             default: Bs
+    #     kind: build
+    #     platform: android-all/opt
+    #     tier: 1
     notify:
         by-build-type:
             .*(beta|release)-mozillaonline:

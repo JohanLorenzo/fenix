@@ -71,7 +71,7 @@ def make_task_description(config, tasks):
             "attributes": attributes,
             "run-on-projects": attributes.get("run_on_projects"),
             "run-on-tasks-for": attributes.get("run_on_tasks_for"),
-            "treeherder": task["treeherder"],
+            # "treeherder": task["treeherder"],
         }
 
         yield task

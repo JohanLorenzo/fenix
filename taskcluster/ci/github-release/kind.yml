@@ -39,6 +39,6 @@ job-template:
                 beta: Firefox Beta {version}
                 release: Firefox {version}
 
-    treeherder:
-        job-symbol: gh-r
-        kind: build
+    # treeherder:
+    #     job-symbol: gh-r
+    #     kind: build

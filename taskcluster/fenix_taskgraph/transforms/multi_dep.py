@@ -42,19 +42,19 @@ def _get_all_deps(task):
     return {task["primary-dependency"].kind: task["primary-dependency"]}
 
 
-@transforms.add
-def resolve_keys(config, tasks):
-    for task in tasks:
-        resolve_keyed_by(
-            task,
-            "treeherder.job-symbol",
-            item_name=task["name"],
-            **{
-                "build-type": task["attributes"]["build-type"],
-                "level": config.params["level"],
-            }
-        )
-        yield task
+# @transforms.add
+# def resolve_keys(config, tasks):
+#     for task in tasks:
+#         resolve_keyed_by(
+#             task,
+#             "treeherder.job-symbol",
+#             item_name=task["name"],
+#             **{
+#                 "build-type": task["attributes"]["build-type"],
+#                 "level": config.params["level"],
+#             }
+#         )
+#         yield task
 
 
 @transforms.add
@@ -97,11 +97,11 @@ def build_treeherder_definition(config, tasks):
     for task in tasks:
         dep = task.pop("primary-dependency")
 
-        task.setdefault("treeherder", {}).update(inherit_treeherder_from_dep(task, dep))
-        job_group = dep.task["extra"]["treeherder"].get("groupSymbol", "?")
-        job_symbol = task["treeherder"].pop("job-symbol")
-        full_symbol = join_symbol(job_group, job_symbol)
-        task["treeherder"]["symbol"] = full_symbol
+        # task.setdefault("treeherder", {}).update(inherit_treeherder_from_dep(task, dep))
+        # job_group = dep.task["extra"]["treeherder"].get("groupSymbol", "?")
+        # job_symbol = task["treeherder"].pop("job-symbol")
+        # full_symbol = join_symbol(job_group, job_symbol)
+        # task["treeherder"]["symbol"] = full_symbol
 
         yield task
 

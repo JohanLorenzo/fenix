@@ -24,10 +24,10 @@ job-defaults:
     run:
         use-caches: false
     run-on-tasks-for: [github-pull-request, github-push]
-    treeherder:
-        kind: test
-        platform: 'lint/opt'
-        tier: 1
+    # treeherder:
+    #     kind: test
+    #     platform: 'lint/opt'
+    #     tier: 1
     worker-type: b-android
     worker:
         docker-image: {in-tree: base}
@@ -40,16 +40,16 @@ jobs:
             using: run-task
             cwd: '{checkout}'
             command: 'pip install --user "compare-locales>=5.0.2,<6.0" && compare-locales --validate l10n.toml .'
-        treeherder:
-            symbol: compare-locale
-            tier: 2
+        # treeherder:
+        #     symbol: compare-locale
+        #     tier: 2
     detekt:
         description: 'Running detekt over all modules'
         run:
             using: gradlew
             gradlew: [detekt, githubLintDetektDetails, 'mozilla-detekt-rules:test']
-        treeherder:
-            symbol: detekt
+        # treeherder:
+        #     symbol: detekt
         worker:
             artifacts:
                 - name: public/reports
@@ -63,15 +63,15 @@ jobs:
         run:
             using: gradlew
             gradlew: [ktlint]
-        treeherder:
-            symbol: ktlint
+        # treeherder:
+        #     symbol: ktlint
     lint:
         description: 'Running lint over all modules'
         run:
             using: gradlew
             gradlew: ['lintDebug', 'githubLintAndroidDetails', 'mozilla-lint-rules:test']
-        treeherder:
-            symbol: lint
+        # treeherder:
+        #     symbol: lint
         worker:
             artifacts:
                 - name: public/reports
